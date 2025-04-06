@@ -14,16 +14,17 @@ function App() {
   const [code, setCode] = useState(``)
   const [review, setReview] = useState(``)
 
-  const apiUri = import.meta.env.BACKEND_URI || 'http://localhost:3000/ai/get-review';
+  const BASE_URL = import.meta.env.VITE_BACKEND_URI;
+  const REVIEW_ENDPOINT_URL = "/ai/get-review";
+
 
   useEffect(()=>{
     prism.highlightAll()
   },[])
 
   async function reviewCode() {
-    const response = await axios.post(`${apiUri}`,{code})
+    const response = await axios.post(`${BASE_URL}${REVIEW_ENDPOINT_URL}`,{code})
     setReview(response.data)
-
   }
 
   return (
