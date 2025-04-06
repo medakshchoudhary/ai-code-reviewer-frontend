@@ -28,7 +28,7 @@ function App() {
       alert("Please enter some code to review")
       return
     }
-    if(code.length > 10000) {
+    if(code.split("/n").length > 10000) {
       alert("Code is too long. Please enter less than 10,000 characters")
       return
     }
