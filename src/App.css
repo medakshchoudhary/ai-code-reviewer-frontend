@@ -32,7 +32,9 @@ main .left {
 
 main .right {
   background-color: #343434;
-  
+  padding: 1.5rem 3rem;
+  overflow: auto; 
+  font-size: 1.2rem;   
 }
 
 main .left .code{
