@@ -26,8 +26,9 @@ main .left, main .right {
 
 
 main .left {
-  background-color: #000000;
+  background-color: #282C34;
   position: relative;
+  /* padding: 1.5rem 3rem; */
 }
 
 main .right {

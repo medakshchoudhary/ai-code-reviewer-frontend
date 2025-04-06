@@ -14,7 +14,7 @@ function App() {
   const [code, setCode] = useState(``)
   const [review, setReview] = useState(``)
 
-  const BASE_URL = import.meta.env.VITE_BACKEND_URI;
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const REVIEW_ENDPOINT_URL = "/ai/get-review";
 
 
@@ -23,8 +23,19 @@ function App() {
   },[])
 
   async function reviewCode() {
-    const response = await axios.post(`${BASE_URL}${REVIEW_ENDPOINT_URL}`,{code})
-    setReview(response.data)
+
+    if(code.length === 0) {
+      alert("Please enter some code to review")
+      return
+    }
+    if(code.length > 10000) {
+      alert("Code is too long. Please enter less than 10,000 characters")
+      return
+    }
+    else{
+      const response = await axios.post(`${BASE_URL}${REVIEW_ENDPOINT_URL}`,{code})
+      setReview(response.data)
+    }
   }
 
   return (
@@ -57,10 +68,9 @@ function App() {
       </div>
       <div className="right">
         <Markdown
-          placeholder="Review will appear here..."
           rehypePlugins={[rehypeHighlight]}
         >
-          {review}
+          {review || "Review will appear here..."}
         </Markdown>
       </div>
     </main>
